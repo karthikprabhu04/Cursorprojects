@@ -48,9 +48,9 @@ const App: React.FC = () => {
 
   const handleClick = (value: { date: string }) => {
     if (!value?.date) return;
-    setWorkoutDays(prev =>
+    setWorkoutDays((prev: string[]) =>
       prev.includes(value.date)
-        ? prev.filter(d => d !== value.date)
+        ? prev.filter((d: string) => d !== value.date)
         : [...prev, value.date]
     );
   };
@@ -64,7 +64,7 @@ const App: React.FC = () => {
           startDate={startDate}
           endDate={endDate}
           values={values}
-          classForValue={value => {
+          classForValue={(value: { date: string; count?: number } | undefined) => {
             if (!value) return 'color-empty';
             return value.count ? 'color-workout' : 'color-empty';
           }}
